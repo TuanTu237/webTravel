@@ -1,20 +1,40 @@
-# Sử dụng một hình ảnh cơ sở với Node.js 14.x
-FROM node:14
+# Sử dụng hình ảnh base có sẵn chứa PHP và Apache
+FROM php:7.4-apache
 
-# Đặt thư mục làm thư mục làm việc trong container
-WORKDIR /usr/src/app
+# Cài đặt các gói phụ thuộc cần thiết
+RUN apt-get update && \
+    apt-get install -y \
+        libpng-dev \
+        libjpeg-dev \
+        libfreetype6-dev \
+        zip \
+        unzip
 
-# Sao chép tập tin package.json và package-lock.json (hoặc yarn.lock) vào thư mục làm việc
-COPY package*.json ./
+# Cài đặt các extension PHP cần thiết
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd pdo pdo_mysql
 
-# Cài đặt các gói phụ thuộc từ package.json
-RUN npm install
+# Thiết lập thư mục làm việc của Apache
+WORKDIR /var/www/html
 
-# Sao chép mã nguồn ứng dụng vào thư mục làm việc
+# Sao chép các tệp Laravel vào container
 COPY . .
 
-# Mở cổng 3000 của container để có thể truy cập ứng dụng web
-EXPOSE 3000
+# Cài đặt các gói Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Khởi chạy ứng dụng khi container được chạy
-CMD ["npm", "start"]
+# Cài đặt các phụ thuộc của Laravel bằng Composer
+RUN composer install
+
+# Thiết lập quyền cho các thư mục và tệp của Laravel
+RUN chown -R www-data:www-data /var/www/html/storage
+RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
+
+# Thiết lập các biến môi trường cho Laravel (nếu cần)
+# ENV APP_ENV=production
+
+# Mở cổng 80 của container
+EXPOSE 80
+
+# Lệnh khi container được khởi chạy
+CMD ["apache2-foreground"]
