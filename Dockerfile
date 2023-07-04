@@ -30,9 +30,6 @@ RUN composer install
 RUN chown -R www-data:www-data /var/www/html/storage
 RUN chown -R www-data:www-data /var/www/html/bootstrap/cache
 
-# Thiết lập các biến môi trường cho Laravel (nếu cần)
-# ENV APP_ENV=production
-
 # Mở cổng 80 của container
 EXPOSE 80
 
