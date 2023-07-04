@@ -37,3 +37,21 @@ jobs:
 
     # - name: Run test suite
     #   run: composer run-script test
+    
+
+  build_and_push:
+    name: Build and Push Docker Image
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKERHUB_TOKEN }}
+        run: |
+          docker build -t tuzuka/lavarel .
+          docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD
+          docker push your-dockerhub-username/your-image-name
