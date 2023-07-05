@@ -24,7 +24,7 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN composer install
 
 # Tạo key mới cho ứng dụng Laravel
-RUN php artisan key:generate
+RUN php artisan server
 
 # Mở cổng 80 để Apache lắng nghe
 EXPOSE 100
