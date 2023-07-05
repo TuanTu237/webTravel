@@ -1,5 +1,6 @@
 # Sử dụng hình ảnh base có sẵn chứa PHP và Apache
-FROM php:7.4-apache
+FROM php:8.0-apache
+
 
 # Cài đặt các gói phụ thuộc cần thiết
 RUN apt-get update && \
