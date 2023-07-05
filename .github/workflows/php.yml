@@ -5,22 +5,23 @@ on:
       - master
 
 jobs:
-  build-and-push:
-    runs-on: ubuntu-latest
+  build-container:
+  name: Build Docker container image
+  run-on: ubuntu-latest
+  steps:
+     - name: Checkout code
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
-      - name: Set up Docker Buildx
-        id: buildx
-        uses: docker/setup-buildx-action@v1
-
-      - name: Login to Docker Hub
-        run: echo ${{ secrets.DOCKERHUB_TOKEN }} | docker login --username ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-
-      - name: Build Docker image
-        run: docker buildx build --file Dockerfile --tag your-dockerhub-username/laravel-app:latest .
-
-      - name: Push Docker image
-        run: docker push your-dockerhub-username/laravel-app:latest
+     - name: Publish to Github packages
+      uses: docker/build-push-action@v1
+      with:
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
+        registry: docker.pkg.github.com
+        repository: ${{ github.repository }}/next
+        tag: lastest, ${{ github.run_number }}
+        - name: Publish to Docker Hub
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+    
