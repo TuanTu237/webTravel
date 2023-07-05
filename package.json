@@ -1,6 +1,7 @@
 {
   "private": true,
   "scripts": {
+    "start": "npm run dev",
     "dev": "npm run development",
     "development": "mix",
     "watch": "mix watch",
@@ -10,7 +11,6 @@
     "production": "mix --production",
     "preproduction": "npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps",
     "build": "npm run preproduction && npm run production",
-    "start": "npm run development",           
     "other-scripts": "..."
   },
   "devDependencies": {
