@@ -2,7 +2,9 @@
   "private": true,
   "scripts": {
     "start": "node server.js",
-    "dev": "npm run development",
+    "dev": "vite",
+    "build": "vite build",
+    "watch": "vite build --watch"
     "development": "mix",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
