@@ -1,10 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "node server.js",
-    "dev": "vite",
-    "build": "vite build",
-    "watch": "vite build --watch"
+    "start": "php artisan server ",
     "development": "mix",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
