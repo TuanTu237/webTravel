@@ -1,6 +1,6 @@
 
 # Sử dụng PHP image chứa Apache, bạn có thể thay đổi phiên bản PHP tùy chọn tại đây
-FROM php:7.4-apache
+FROM php:8.0-apache
 
 # Cài đặt các gói cần thiết và mở extension cho Laravel
 RUN apt-get update \
