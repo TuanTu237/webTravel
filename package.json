@@ -10,7 +10,7 @@
     "production": "mix --production",
     "preproduction": "npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps",
     "build": "npm run preproduction && npm run production",
-    "start": "npm run development",           // Script "start" to run the development script
+    "start": "npm run development",           
     "other-scripts": "..."
   },
   "devDependencies": {
