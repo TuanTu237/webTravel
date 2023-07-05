@@ -1,9 +1,21 @@
 {
     "name": "laravel/laravel",
+    "version": "1.0.0",
+    "scripts": {
+    "build": "your-build-command-here",
+    "other-scripts": "..."
+    },
     "type": "project",
     "description": "The Laravel Framework.",
     "keywords": ["framework", "laravel"],
     "license": "MIT",
+    {
+  
+  "version": "1.0.0",
+  "scripts": {
+    "build": "your-build-command-here",
+    "other-scripts": "..."
+  },
     "require": {
         "php": "^7.3|^8.0",
         "bumbummen99/shoppingcart": "^4.2",
