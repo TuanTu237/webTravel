@@ -1,5 +1,5 @@
-# Tệp Dockerfile cho Laravel
-FROM php:7.4-fpm
+# Tệp Dockerfile cho Laravel với Apache
+FROM php:7.4-apache
 
 WORKDIR /var/www/html
 
@@ -12,11 +12,11 @@ RUN apt-get update && apt-get install -y \
 # Cài đặt PHP extensions
 RUN docker-php-ext-install pdo pdo_mysql
 
-# Copy mã nguồn của ứng dụng vào container
-COPY . .
-
 # Cài đặt Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Copy mã nguồn của ứng dụng vào container
+COPY . .
 
 # Cài đặt các gói Composer
 RUN composer install
@@ -24,6 +24,5 @@ RUN composer install
 # Cài đặt Laravel Key
 RUN php artisan key:generate
 
-# Chạy Laravel trên cổng 9000
-EXPOSE 9000
-CMD ["php-fpm", "-F"]
+# Chạy Apache trong foreground mode khi container khởi động
+CMD ["apache2-foreground"]
