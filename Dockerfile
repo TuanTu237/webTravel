@@ -1,5 +1,6 @@
 # Tệp Dockerfile cho Laravel với Apache
-FROM php:7.4-apache
+FROM php:8.0-apache
+
 
 WORKDIR /var/www/html
 
