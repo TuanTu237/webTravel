@@ -1,16 +1,16 @@
 {
   "private": true,
   "scripts": {
-    "dev": "npm run development",
-    "development": "mix",
-    "watch": "mix watch",
-    "watch-poll": "mix watch -- --watch-options-poll=1000",
-    "hot": "mix watch --hot",
-    "prod": "npm run production",
-    "production": "mix --production",
-    "preproduction": "npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps",
+    "dev": "npm run development",                
+    "development": "mix",                        
+    "watch": "mix watch",                        
+    "watch-poll": "mix watch -- --watch-options-poll=1000", 
+    "hot": "mix watch --hot",                    
+    "prod": "npm run production",                
+    "production": "mix --production",            
+    "preproduction": "npm install vue-loader@^15.9.8 --save-dev --legacy-peer-deps", 
     "build": "npm run preproduction && npm run production", 
-    "other-scripts": "..."
+    "other-scripts": "..."                       
   },
   "devDependencies": {
     "@popperjs/core": "^2.10.2",
