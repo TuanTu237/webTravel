@@ -1,10 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-     "test": "react-scripts test",
-     "eject": "react-scripts eject"
+    "start": "node server.js",
     "dev": "npm run development",
     "development": "mix",
     "watch": "mix watch",
