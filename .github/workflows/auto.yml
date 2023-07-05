@@ -17,7 +17,7 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: ${{ github.repository }}/next
+          repository: ${{ github.repository }}/laravel-app
           tag: latest, ${{ github.run_number }}
 
       - name: Publish to Docker Hub
@@ -25,5 +25,5 @@ jobs:
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
-          repository: tuzuka/next
+          repository: tuzuka/laravel-app
           tag: latest, ${{ github.run_number }}
