@@ -6,11 +6,14 @@ on:
 
 jobs:
   build-container:
+
     name: Build Docker container image
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Publish to Github packages
         uses: docker/build-push-action@v1
         with:
@@ -27,3 +30,8 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: tuzuka/laravel-app
           tag: latest, ${{ github.run_number }}
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v1
+        with:
+         push: true
+         tag: tuzuka/laravel-app:latest
