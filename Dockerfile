@@ -1,32 +1,29 @@
-# Sử dụng PHP image chứa Apache, bạn có thể thay đổi phiên bản PHP tùy chọn tại đây
-FROM php:8.0-apache
+# Tệp Dockerfile cho Laravel
+FROM php:7.4-fpm
 
-# Cài đặt các gói cần thiết và mở extension cho Laravel
-RUN apt-get update \
-    && apt-get install -y libpng-dev libjpeg-dev libfreetype6-dev zip unzip git \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
-
-# Copy toàn bộ mã nguồn Laravel vào thư mục /var/www/html
-COPY . /var/www/html
-
-# Đặt thư mục làm việc cho Apache
 WORKDIR /var/www/html
 
-# Copy file .env mặc định, bạn có thể sửa đổi file .env này khi chạy container nếu cần thiết
-COPY .env.example .env
+# Cài đặt các phụ thuộc
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip
 
-# Cài đặt composer để quản lý các phụ thuộc PHP
+# Cài đặt PHP extensions
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Copy mã nguồn của ứng dụng vào container
+COPY . .
+
+# Cài đặt Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Chạy composer install để cài đặt các phụ thuộc Laravel
+# Cài đặt các gói Composer
 RUN composer install
 
-# Tạo key mới cho ứng dụng Laravel
+# Cài đặt Laravel Key
 RUN php artisan key:generate
 
-# Mở cổng 80 để Apache lắng nghe
-EXPOSE 80
-
-# Bắt đầu Apache server khi chạy container
-CMD ["apache2-foreground"]
+# Chạy Laravel trên cổng 9000
+EXPOSE 9000
+CMD ["php-fpm", "-F"]
