@@ -23,3 +23,10 @@
         "vue-template-compiler": "^2.6.12"
     }
 }
+{
+  "name": "your-laravel-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "your-build-command-here",
+    "other-scripts": "..."
+  },
