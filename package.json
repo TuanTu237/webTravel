@@ -1,7 +1,8 @@
 {
   "private": true,
   "scripts": {
-    "start": "php artisan server ",
+    "start": "node php artisan server.js ",
+ 
     "development": "mix",
     "watch": "mix watch",
     "watch-poll": "mix watch -- --watch-options-poll=1000",
