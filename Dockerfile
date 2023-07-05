@@ -27,7 +27,7 @@ RUN composer install
 RUN php artisan key:generate
 
 # Mở cổng 80 để Apache lắng nghe
-EXPOSE 80
+EXPOSE 100
 
 # Bắt đầu Apache server khi chạy container
 CMD ["apache2-foreground"]
